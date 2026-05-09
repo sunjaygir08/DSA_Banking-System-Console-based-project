@@ -9,6 +9,7 @@ pending_transactions = deque()  # Queue for pending transactions
 undo_stack = []  # Stack for undo operations
 accounts = {}  # Dictionary for all accounts
 transaction_counter = 1000  # Transaction ID counter
+account_counter = 1001  # Auto-generated account number counter
 DATA_FILE = "bank_data.json"
 
 
@@ -118,21 +119,16 @@ class BankSystem:
 
     def create_account(self):
         """Create new bank account"""
+        global account_counter
         print("\n" + "="*70)
         print("CREATE ACCOUNT".center(70))
         print("="*70)
         
-        acc_no = input("\n📝 Enter Account Number: ").strip()
+        # Auto-generate account number
+        acc_no = f"ACC{account_counter}"
+        account_counter += 1
         
-        if not acc_no:
-            print("❌ Account number cannot be empty")
-            return
-        
-        if acc_no in accounts:
-            print("❌ Account already exists.")
-            return
-        
-        name = input("📝 Enter Name: ").strip()
+        name = input("\n📝 Enter Full Name: ").strip()
         if not name:
             print("❌ Name cannot be empty")
             return
@@ -156,9 +152,10 @@ class BankSystem:
         accounts[acc_no] = BankAccount(acc_no, name, pin, initial_balance)
         self.save_data()
         print(f"\n✅ Account created successfully!")
-        print(f"   Account Number: {acc_no}")
-        print(f"   Account Holder: {name}")
-        print(f"   Initial Balance: Rs.{initial_balance}")
+        print(f"   🔢 Account Number: {acc_no}")
+        print(f"   👤 Account Holder: {name}")
+        print(f"   💰 Initial Balance: Rs.{initial_balance}")
+        print(f"   🔐 PIN: ****")
 
     def login(self):
         """Login to account"""

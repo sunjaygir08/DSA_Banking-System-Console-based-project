@@ -1,0 +1,14 @@
+{
+  "Sunjay Gir": {
+    "acc_no": "Sunjay Gir",
+    "name": "Sunjay Gir",
+    "pin": "252525",
+    "balance": 2000.0,
+    "status": "active",
+    "history": [],
+    "daily_limit": 50000,
+    "daily_used": 0,
+    "beneficiaries": [],
+    "creation_date": "09-05-2026 11:57:22"
+  }
+}
